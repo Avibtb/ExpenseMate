@@ -3,6 +3,8 @@ package com.splitwise.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.splitwise.enums.ExpenseCategory;
+import com.splitwise.enums.ExpenseType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
@@ -25,6 +27,14 @@ public class Expense {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+
+    @NotNull(message = "Expense type is missing")
+    @Enumerated(EnumType.STRING)
+    private ExpenseType expenseType;
+
+    @NotNull(message = "Expense type is category")
+    @Enumerated(EnumType.STRING)
+    private ExpenseCategory category;
 
     private String description;
 
