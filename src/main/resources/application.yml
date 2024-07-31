@@ -15,3 +15,23 @@ spring:
         format-sql: true
   main:
     allow-circular-references: true
+
+
+  #  **************** Email Configuration Start ***********************
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: avi.singh.iit01@gmail.com
+    password: psqn ncim zgfr kmcg
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+  #  **************** Email Configuration End *******************
+
+  serverIP: 65.2.90.187
