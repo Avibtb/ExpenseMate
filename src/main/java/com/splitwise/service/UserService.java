@@ -10,6 +10,6 @@ public interface UserService {
     ApiResponse<Object> getAllUsers();
     ApiResponse<Object> findUserById(String id);
 
-    UserDetails findByEmail(String username);
+    UserDetails findByEmail(String email);
     Users findByVerificationCode(String verificationCode);
 }
