@@ -27,7 +27,7 @@ public class AuthController {
         return new ResponseEntity<>(authService.register(registerRequestDTO), HttpStatus.OK);
     }
 
-    @GetMapping("/verify")
+    @GetMapping("verify")
     public ResponseEntity<ApiResponse<Object>> verifyEmail(@RequestParam("code") String code){
         return new ResponseEntity<>(authService.verifyEmail(code),HttpStatus.OK);
     }

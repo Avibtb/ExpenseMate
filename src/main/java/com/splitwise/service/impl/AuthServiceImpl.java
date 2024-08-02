@@ -77,7 +77,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public ApiResponse<Object> verifyEmail(String verificationCode) {
        Users user = userService.findByVerificationCode(verificationCode);
-       user.setVerificationCode(null);
+       user.setVerificationCode(verificationCode);
        user.setEnabled(true);
 
        return ApiResponse.builder()
