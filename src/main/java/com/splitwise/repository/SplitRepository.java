@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SplitRepository extends JpaRepository<Split,String> {
-    boolean existByExpenseAndUser(Expense expense, Users users);
+    boolean existsByExpenseAndUser(Expense expense, Users user);
 }

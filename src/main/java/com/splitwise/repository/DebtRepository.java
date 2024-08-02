@@ -17,7 +17,7 @@ public interface DebtRepository extends JpaRepository<Debt,String> {
     void deleteByPayerAndPayee(Users payer,Users payee);
 
     @Query("SELECT d from Debt d WHERE d.payer = :user OR d.payee = :user")
-    List<Debt> findByPayerOrPayee(Users users);
+    List<Debt> findByPayerOrPayee(Users user);
 
     List<Debt> findByPayer(Users users);
     List<Debt> findByPayee(Users users);

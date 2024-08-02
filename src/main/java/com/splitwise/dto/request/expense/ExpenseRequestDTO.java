@@ -3,6 +3,7 @@ package com.splitwise.dto.request.expense;
 import com.splitwise.enums.ExpenseCategory;
 import com.splitwise.enums.ExpenseType;
 import com.splitwise.validator.annotations.NotBlankEnum;
+import com.splitwise.validator.annotations.ValidExpenseType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.Valid;
@@ -18,6 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ValidExpenseType
 public class ExpenseRequestDTO {
 
     @NotEmpty(message = "Payer ID is missing")

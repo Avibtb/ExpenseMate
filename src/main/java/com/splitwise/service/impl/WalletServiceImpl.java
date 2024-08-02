@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
 public class WalletServiceImpl implements WalletService {
 
@@ -23,14 +22,17 @@ public class WalletServiceImpl implements WalletService {
     @Autowired
     private CustomMapper customMapper;
 
+
     @Override
     public void createOrUpdateWallet(Expense expense) {
         List<Split> splits = expense.getSplits();
         Users payer = expense.getPayer();
 
         if(!walletRepository.existsByUser(payer)){
+
             createWallet(payer);
         }
+
         for(Split split: splits){
             Users payee = split.getUser();
 
@@ -88,9 +90,18 @@ public class WalletServiceImpl implements WalletService {
             }
         }
 
-
     }
 
+    private void createWallet(Users user) {
+        Wallet wallet = Wallet.builder()
+                .user(user)
+                .own(0.00)
+                .payable(0.00)
+                .build();
+
+        walletRepository.save(wallet);
+
+    }
 
     @Override
     public ApiResponse<Object> getWalletById(String userId) {
@@ -101,16 +112,4 @@ public class WalletServiceImpl implements WalletService {
                 .data(customMapper.map(wallet))
                 .build();
     }
-
-    private void createWallet(Users user) {
-        Wallet wallet = Wallet.builder()
-                .users(user)
-                .own(0.00)
-                .payable(0.00)
-                .build();
-
-        walletRepository.save(wallet);
-
-    }
-
 }

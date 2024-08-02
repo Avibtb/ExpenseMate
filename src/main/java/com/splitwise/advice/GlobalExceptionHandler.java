@@ -1,6 +1,9 @@
 package com.splitwise.advice;
 
-import org.apache.logging.log4j.util.InternalException;
+import com.splitwise.exception.GroupNotFoundException;
+import com.splitwise.exception.UserNotFoundException;
+import com.sun.jdi.InternalException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -13,20 +16,23 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(InternalException.class)
-    public ResponseEntity<Map<String,String>> internalServerExceptionalHandler(Exception ex){
 
-        Map<String,String> map = new HashMap<>();
-        map.put("ErrorMessage",ex.getMessage());
+    @ExceptionHandler({InternalException.class})
+    public ResponseEntity<Map<String, String>> internalServerErrorExceptionHandle(Exception ex){
+
+        Map<String, String> map = new HashMap<>();
+        map.put("ErrorMessage", ex.getMessage());
 
         return new ResponseEntity<>(map, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(InternalException.class)
-    public ResponseEntity<Map<String,String>> globalExceptionHandler(Exception ex){
-        Map<String,String> map = new HashMap<>();
-        map.put("ErrorMessage",ex.getMessage());
-        return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
+    @ExceptionHandler({DataIntegrityViolationException.class, UserNotFoundException.class, GroupNotFoundException.class, Exception.class})
+    public ResponseEntity<Map<String, String>> globalExceptionHandle(Exception ex){
+
+        Map<String, String> map = new HashMap<>();
+        map.put("ErrorMessage", ex.getMessage());
+
+        return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
     }
 
 

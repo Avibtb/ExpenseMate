@@ -22,7 +22,7 @@ public class Wallet {
 
     @OneToOne
     @JoinColumn(name = "fk_user_id")
-    private Users users;
+    private Users user;
 
     @DecimalMin(value = "0.00" ,message = "Amount must be greater than or equal to 0.01")
     private Double payable;
