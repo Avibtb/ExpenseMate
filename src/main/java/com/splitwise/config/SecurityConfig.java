@@ -30,7 +30,7 @@ public class SecurityConfig {
             "/configuration/security",
             "/swagger-ui/**",
             "/swagger-ui.html",
-            "/swagger-ui.html/**",
+            "https://expensemate-production.up.railway.app",
             "/webjars/**"
 
     };
