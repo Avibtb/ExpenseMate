@@ -35,3 +35,35 @@ spring:
   #  **************** Email Configuration End *******************
 
   serverIP: 65.2.90.187
+
+
+# ****************** Open API configuration *********************
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+  info:
+    title: ExpenseMate API
+    description: This is the API documentation for the ExpenseMate application.
+    version: 1.0
+    terms-of-service: http://swagger.io/terms/
+    contact:
+      name: Avinash Kumar Singh
+      email: avi.singh.iit01@gmail.com
+      url: https://www.linkedin.com/in/avinash-19/
+    license:
+      name: Apache 2.0
+      url: http://www.apache.org/licenses/LICENSE-2.0.html
+  servers:
+    - url: https://expensemate-production.up.railway.app
+      description: Production server
+  security-schemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearer-format: JWT
+  security:
+    - BearerAuth: []
